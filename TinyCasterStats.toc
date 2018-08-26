@@ -1,0 +1,24 @@
+## Interface: 70100
+## Title: TinyCasterStats
+## Version: @project-version@
+## Author: TheVaan
+## Notes: Shows your current caster stats (spellpower, critchance, haste, hit, mp5).|n|cffeda55fBy TheVaan|r
+## Notes-deDE: Zeigt deine aktuellen Zauberwerte (Zaubermacht, Kritischetrefferwertung in Prozent, Tempo, Trefferwertung, MP5).|n|cffeda55fBy TheVaan|r
+## SavedVariablesPerCharacter: TinyCasterStatsDB
+## SavedVariables: TinyCStatsDB
+## OptionalDeps: AceAddon-3.0, AceConfig-3.0, AceConsole-3.0, AceDB-3.0, AceEvent-3.0, AceGUI-3.0, AceGUI-3.0-SharedMediaWidgets, AceLocale-3.0, CallbackHandler-1.0, LibDataBroker-1.1, LibSharedMedia-3.0, LibStub
+
+embeds.xml
+
+Localization\deDE.lua
+Localization\enUS.lua
+Localization\esES.lua
+Localization\esMX.lua
+Localization\frFR.lua
+Localization\koKR.lua
+Localization\ruRU.lua
+Localization\zhCN.lua
+Localization\zhTW.lua
+
+TinyCasterStats.lua
+Options.lua

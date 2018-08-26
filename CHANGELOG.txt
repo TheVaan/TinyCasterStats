@@ -1,0 +1,57 @@
+=== r71 ===
+
+* fix Mastery Stat
+
+=== r69 ===
+
+* toc 50001
+* del old codes from 4.3.4
+* fix Bug "index field "profile" (a nil value)"
+* sorted Stats to match the CharacterStatsPane
+
+=== r65 ===
+
+* remove Lib GroupTalents
+* Options fix GetActiveTalentGroup()
+* LUA fix GetActiveTalentGroup()
+* remove Old DB fix
+
+=== r55 ===
+
+* Broker Color = Text Color
+* Reords specific for Spec 
+
+=== r54 ===
+
+* alignment with TinyMeleeStats
+
+=== r53 ===
+
+* add Color options for stats
+* add Record Sound, support LibSharedMedia
+* fix SavedVariablesPerCharacter
+
+=== r51 ===
+
+* add HighestSpirit and Mastery to reset records
+* fix record msg by same variables of typ double
+* GetHaste() and GetHit() fixed
+* Frame Initialize fixed (before, many Initialize)
+* double update by UNIT_AURA removed
+
+=== r50 ===
+
+* HUD
+  ** fix missing display mp5 and mp5-ic
+  ** add missing unit of measurement (mp5)
+  ** SetScript "OnDrag" when loaded addon
+  
+* LDB 
+  ** fix incorrectly Color 
+  ** remove ")" by mp5 record
+  ** add missing unit of measurement (mp5)
+  ** add OnClick Handler to open Options
+  ** remove second row who does not appear records
+ 
+* Options
+  ** add option to display / hide stats in the LDB text field. 
