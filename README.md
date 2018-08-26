@@ -1,2 +1,5 @@
-# TinyCasterStats
-TinyCasterStats - World of Warcraft Addon
+# TinyMeleeStats
+TinyMeleeStats - World of Warcraft Addon
+
+# Sourceforge
+Home of the packaged addon: https://wow.curseforge.com/projects/tcs
