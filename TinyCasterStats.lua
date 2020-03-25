@@ -99,8 +99,7 @@ TinyCasterStats.defaults = {
 			Versatility = false,
 			showRecords = true,
 			vertical = false,
-			labels = false,
-			LDBtext = true
+			labels = false
 		},
 		Color = {
 			sp = {
@@ -251,16 +250,6 @@ function TinyCasterStats:SetFrameVisible()
 
 end
 
-function TinyCasterStats:SetBroker()
-
-	if self.db.char.Style.LDBtext then
-		TCSBroker.label = ""
-	else
-		TCSBroker.label = AddonName
-	end
-
-end
-
 function TinyCasterStats:InitializeFrame()
 	self.tcsframe:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", self.db.char.xPosition, self.db.char.yPosition)
 	local font = media:Fetch("font", self.db.char.Font)
@@ -279,7 +268,6 @@ function TinyCasterStats:InitializeFrame()
 	self:SetStringColors()
 	self:SetDragScript()
 	self:SetFrameVisible()
-	self:SetBroker()
 	self:Stats()
 end
 
@@ -355,14 +343,12 @@ function SetActiveSpecGroup(...)
 end
 
 function TinyCasterStats:OnEvent(event, arg1)
+	if (event == "PLAYER_ENTERING_WORLD") then
+		self:UseTinyXStats()
+	end
 	if ((event == "PLAYER_REGEN_ENABLED") or (event == "PLAYER_ENTERING_WORLD")) then
 		self.tcsframe:SetAlpha(self.db.char.outOfCombatAlpha)
 		isInFight = false
-		--[[local weekday, month, day, year = CalendarGetDate()
-		if self.db.char.PostXStatsDay ~= day then
-			self.db.char.PostXStatsDay = day
-			self:UseTinyXStats()
-		end]]--
 	end
 	if (event == "PLAYER_REGEN_DISABLED") then
 		self.tcsframe:SetAlpha(self.db.char.inCombatAlpha)
@@ -848,9 +834,6 @@ function TinyCasterStats:Stats()
 		self.strings.versatilityRecordString:SetText("")
 	end
 
-	if (style.LDBtext) then
-		TCSBroker.text = ldbString..ldbRecord.."|r"
-	else
-		TCSBroker.text = ""
-	end
+	TCSBroker.text = ldbString..ldbRecord.."|r"
+	
 end
