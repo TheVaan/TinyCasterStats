@@ -71,7 +71,6 @@ TinyCasterStats.defaults = {
 			HighestHastePerc = "0.00",
 			HighestMP5if = 0,
 			HighestMP5 = 0,
-			HighestSpirit = 0,
 			HighestMastery = "0.00",
 			HighestVersatility = "0.00"
 		},
@@ -82,7 +81,6 @@ TinyCasterStats.defaults = {
 			HighestHastePerc = "0.00",
 			HighestMP5if = 0,
 			HighestMP5 = 0,
-			HighestSpirit = 0,
 			HighestMastery = "0.00",
 			HighestVersatility = "0.00"
 		},
@@ -90,7 +88,6 @@ TinyCasterStats.defaults = {
 			Spelldmg = true,
 			Crit = true,
 			Haste = true,
-			Spirit = false,
 			Mastery = true,
 			HastePerc = false,
 			MP5 = false,
@@ -122,11 +119,6 @@ TinyCasterStats.defaults = {
 				g = 1.0,
 				b = 1.0
 			},
-			spirit = {
-				r = 1.0,
-				g = 1.0,
-				b = 1.0
-			},
 			mastery = {
 				r = 1.0,
 				g = 1.0,
@@ -138,7 +130,7 @@ TinyCasterStats.defaults = {
 				b = 0.0313725490196078
 			}
 		},
-		DBver = 4
+		DBver = 5
 	}
 }
 
@@ -154,7 +146,6 @@ TinyCasterStats.strings = {
 	critString = TinyCasterStats.tcsframe:CreateFontString(),
 	hasteString = TinyCasterStats.tcsframe:CreateFontString(),
 	masteryString = TinyCasterStats.tcsframe:CreateFontString(),
-	spiritString = TinyCasterStats.tcsframe:CreateFontString(),
 	mp5String = TinyCasterStats.tcsframe:CreateFontString(),
 	versatilityString = TinyCasterStats.tcsframe:CreateFontString(),
 
@@ -162,7 +153,6 @@ TinyCasterStats.strings = {
 	critRecordString = TinyCasterStats.tcsframe:CreateFontString(),
 	hasteRecordString = TinyCasterStats.tcsframe:CreateFontString(),
 	masteryRecordString = TinyCasterStats.tcsframe:CreateFontString(),
-	spiritRecordString = TinyCasterStats.tcsframe:CreateFontString(),
 	mp5RecordString = TinyCasterStats.tcsframe:CreateFontString(),
 	versatilityRecordString = TinyCasterStats.tcsframe:CreateFontString()
 }
@@ -173,7 +163,6 @@ function TinyCasterStats:SetStringColors()
 	self.strings.critString:SetTextColor(c.crit.r, c.crit.g, c.crit.b, 1.0)
 	self.strings.hasteString:SetTextColor(c.haste.r, c.haste.g, c.haste.b, 1.0)
 	self.strings.masteryString:SetTextColor(c.mastery.r, c.mastery.g, c.mastery.b, 1.0)
-	self.strings.spiritString:SetTextColor(c.spirit.r, c.spirit.g, c.spirit.b, 1.0)
 	self.strings.mp5String:SetTextColor(c.mp5.r, c.mp5.g, c.mp5.b, 1.0)
 	self.strings.versatilityString:SetTextColor(c.versatility.r, c.versatility.g, c.versatility.b, 1.0)
 
@@ -181,7 +170,6 @@ function TinyCasterStats:SetStringColors()
 	self.strings.critRecordString:SetTextColor(c.crit.r, c.crit.g, c.crit.b, 1.0)
 	self.strings.hasteRecordString:SetTextColor(c.haste.r, c.haste.g, c.haste.b, 1.0)
 	self.strings.masteryRecordString:SetTextColor(c.mastery.r, c.mastery.g, c.mastery.b, 1.0)
-	self.strings.spiritRecordString:SetTextColor(c.spirit.r, c.spirit.g, c.spirit.b, 1.0)
 	self.strings.mp5RecordString:SetTextColor(c.mp5.r, c.mp5.g, c.mp5.b, 1.0)
 	self.strings.versatilityRecordString:SetTextColor(c.versatility.r, c.versatility.g, c.versatility.b, 1.0)
 end
@@ -191,31 +179,27 @@ function TinyCasterStats:SetTextAnchors()
 	if (not self.db.char.Style.vertical) then
 		self.strings.spString:SetPoint("TOPLEFT", self.tcsframe,"TOPLEFT", offsetX, offsetY)
 		self.strings.hasteString:SetPoint("TOPLEFT", self.strings.spString, "TOPRIGHT", offsetX, offsetY)
-		self.strings.spiritString:SetPoint("TOPLEFT", self.strings.hasteString, "TOPRIGHT", offsetX, offsetY)
-		self.strings.mp5String:SetPoint("TOPLEFT", self.strings.spiritString, "TOPRIGHT", offsetX, offsetY)
+		self.strings.mp5String:SetPoint("TOPLEFT", self.strings.hasteString, "TOPRIGHT", offsetX, offsetY)
 		self.strings.critString:SetPoint("TOPLEFT", self.strings.mp5String, "TOPRIGHT", offsetX, offsetY)
 		self.strings.masteryString:SetPoint("TOPLEFT", self.strings.critString, "TOPRIGHT", offsetX, offsetY)
 		self.strings.versatilityString:SetPoint("TOPLEFT", self.strings.masteryString, "TOPRIGHT", offsetX, offsetY)
 
 		self.strings.spRecordString:SetPoint("TOPLEFT", self.strings.spString, "BOTTOMLEFT")
 		self.strings.hasteRecordString:SetPoint("TOPLEFT", self.strings.spRecordString, "TOPRIGHT", offsetX, offsetY)
-		self.strings.spiritRecordString:SetPoint("TOPLEFT", self.strings.hasteRecordString, "TOPRIGHT", offsetX, offsetY)
-		self.strings.mp5RecordString:SetPoint("TOPLEFT", self.strings.spiritRecordString, "TOPRIGHT", offsetX, offsetY)
+		self.strings.mp5RecordString:SetPoint("TOPLEFT", self.strings.hasteRecordString, "TOPRIGHT", offsetX, offsetY)
 		self.strings.critRecordString:SetPoint("TOPLEFT", self.strings.mp5RecordString, "TOPRIGHT", offsetX, offsetY)
 		self.strings.masteryRecordString:SetPoint("TOPLEFT", self.strings.critRecordString, "TOPRIGHT", offsetX, offsetY)
 		self.strings.versatilityRecordString:SetPoint("TOPLEFT", self.strings.masteryRecordString, "TOPRIGHT", offsetX, offsetY)
 	else
 		self.strings.spString:SetPoint("TOPLEFT", self.tcsframe,"TOPLEFT", offsetX, offsetY)
 		self.strings.hasteString:SetPoint("TOPLEFT", self.strings.spString, "BOTTOMLEFT")
-		self.strings.spiritString:SetPoint("TOPLEFT", self.strings.hasteString, "BOTTOMLEFT")
-		self.strings.mp5String:SetPoint("TOPLEFT", self.strings.spiritString, "BOTTOMLEFT")
+		self.strings.mp5String:SetPoint("TOPLEFT", self.strings.hasteString, "BOTTOMLEFT")
 		self.strings.critString:SetPoint("TOPLEFT", self.strings.mp5String, "BOTTOMLEFT")
 		self.strings.masteryString:SetPoint("TOPLEFT", self.strings.critString, "BOTTOMLEFT")
 		self.strings.versatilityString:SetPoint("TOPLEFT", self.strings.masteryString, "BOTTOMLEFT")
 
 		self.strings.spRecordString:SetPoint("TOPLEFT", self.strings.spString, "TOPRIGHT", offsetX, offsetY)
 		self.strings.hasteRecordString:SetPoint("TOPLEFT", self.strings.hasteString, "TOPRIGHT", offsetX, offsetY)
-		self.strings.spiritRecordString:SetPoint("TOPLEFT", self.strings.spiritString, "TOPRIGHT", offsetX, offsetY)
 		self.strings.mp5RecordString:SetPoint("TOPLEFT", self.strings.mp5String, "TOPRIGHT", offsetX, offsetY)
 		self.strings.critRecordString:SetPoint("TOPLEFT", self.strings.critString, "TOPRIGHT", offsetX, offsetY)
 		self.strings.masteryRecordString:SetPoint("TOPLEFT", self.strings.masteryString, "TOPRIGHT", offsetX, offsetY)
@@ -418,7 +402,6 @@ function TinyCasterStats:Stats()
 	local haste, hasteperc = GetHaste()
 	local mastery = string.format("%.2f", GetMasteryEffect())
 	local versatility = string.format("%.2f",GetCombatRating(29)/130)
-	local s, spirit = UnitStat("player", 5)
 	local base, casting = GetManaRegen()
 	base = floor(base * 5.0)
 	casting = floor(casting * 5.0)
@@ -448,13 +431,6 @@ function TinyCasterStats:Stats()
 			if (self.db.char.RecordMsg == true) then
 				DEFAULT_CHAT_FRAME:AddMessage(recordBroken..SPELL_HASTE..": |c00ffef00"..self.db.char[spec].HighestHaste.."|r")
 				DEFAULT_CHAT_FRAME:AddMessage(recordBroken..L["Percent Haste"]..": |c00ffef00"..self.db.char[spec].HighestHastePerc.."%|r")
-				recordIsBroken = true
-			end
-		end
-		if (tonumber(spirit) > tonumber(self.db.char[spec].HighestSpirit)) then
-			self.db.char[spec].HighestSpirit = spirit
-			if (self.db.char.RecordMsg == true) then
-				DEFAULT_CHAT_FRAME:AddMessage(recordBroken..ITEM_MOD_SPIRIT_SHORT..": |c00ffef00"..self.db.char[spec].HighestSpirit.."|r")
 				recordIsBroken = true
 			end
 		end
@@ -597,39 +573,6 @@ function TinyCasterStats:Stats()
 	elseif (not style.Haste) then
 		self.strings.hasteString:SetText("")
 		self.strings.hasteRecordString:SetText("")
-	end
-	if (style.Spirit) then
-		local spiritTempString = ""
-		local spiritRecordTempString = ""
-		ldbString = ldbString..HexColor("spirit")
-		if (style.labels) then
-			spiritTempString = spiritTempString..L["Spi:"].." "
-			ldbString = ldbString..L["Spi:"].." "
-		end
-		spiritTempString = spiritTempString..spirit
-		ldbString = ldbString..spirit.." "
-		if (style.showRecords) then
-			ldbRecord = ldbRecord..HexColor("spirit")
-			if (style.vertical) then
-				if (style.labels) then
-					ldbRecord = ldbRecord..L["Spi:"]..": "
-				end
-				spiritRecordTempString = spiritRecordTempString.."("..self.db.char[spec].HighestSpirit..")"
-				ldbRecord = ldbRecord..self.db.char[spec].HighestSpirit.." "
-			else
-				if (style.labels) then
-					spiritRecordTempString = spiritRecordTempString..L["Spi:"].." "
-					ldbRecord = ldbRecord..L["Spi:"].." "
-				end
-				spiritRecordTempString = spiritRecordTempString..self.db.char[spec].HighestSpirit
-				ldbRecord = ldbRecord..self.db.char[spec].HighestSpirit.." "
-			end
-		end
-		self.strings.spiritString:SetText(spiritTempString)
-		self.strings.spiritRecordString:SetText(spiritRecordTempString)
-	else
-		self.strings.spiritString:SetText("")
-		self.strings.spiritRecordString:SetText("")
 	end
 	if (style.MP5) then
 		ldbString = ldbString..HexColor("mp5")

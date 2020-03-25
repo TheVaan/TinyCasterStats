@@ -155,40 +155,6 @@ function TinyCasterStats:Options()
 						disabled = function() return InCombatLockdown() end,
 						order = 7
 					},
-					spirit = {
-						name = ITEM_MOD_SPIRIT_SHORT,
-						desc = ITEM_MOD_SPIRIT_SHORT.." "..show.."/"..hide,
-						width = 'double',
-						type = 'toggle',
-						get = function() return self.db.char.Style.Spirit end,
-						set = function(info, value)
-							if(value) then
-								self.db.char.Style.Spirit = true
-							else
-								self.db.char.Style.Spirit = false
-							end
-							self:Stats()
-						end,
-						disabled = function() return InCombatLockdown() end,
-						order = 8
-					},
-					spiritcolor = {
-						name = "",
-						desc = "",
-						width = 'half',
-						type = 'color',
-						get = function()
-							local c = self.db.char.Color.spirit
-							return c.r, c.g, c.b
-						end,
-						set = function(info, r, g, b)
-							local c = self.db.char.Color.spirit
-							c.r, c.g, c.b = r, g, b
-							self:SetStringColors()
-							self:Stats()
-						end,
-						order = 9
-					},
 					mp5 = {
 						name = ITEM_MOD_MANA_REGENERATION_SHORT.." "..L["out of combat"],
 						desc = ITEM_MOD_MANA_REGENERATION_SHORT.." "..L["out of combat"].." "..show.."/"..hide,
@@ -205,7 +171,7 @@ function TinyCasterStats:Options()
 							self:Stats()
 						end,
 						disabled = function() return InCombatLockdown() end,
-						order = 10
+						order = 8
 					},
 					mp5color = {
 						name = "",
@@ -222,7 +188,7 @@ function TinyCasterStats:Options()
 							self:SetStringColors()
 							self:Stats()
 						end,
-						order = 11
+						order = 9
 					},
 					mp5ic = {
 						name = ITEM_MOD_MANA_REGENERATION_SHORT.." "..L["in combat"],
@@ -240,7 +206,7 @@ function TinyCasterStats:Options()
 							self:Stats()
 						end,
 						disabled = function() return InCombatLockdown() end,
-						order = 12
+						order = 10
 					},
 					mp5auto = {
 						name = ITEM_MOD_MANA_REGENERATION_SHORT.." ("..L["automatic"]..")",
@@ -259,7 +225,7 @@ function TinyCasterStats:Options()
 							self:Stats()
 						end,
 						disabled = function() return InCombatLockdown() end,
-						order = 13
+						order = 11
 					},
 					crit = {
 						name = CRIT_CHANCE,
@@ -276,7 +242,7 @@ function TinyCasterStats:Options()
 							self:Stats()
 						end,
 						disabled = function() return InCombatLockdown() end,
-						order = 14
+						order = 12
 					},
 					critcolor = {
 						name = "",
@@ -293,7 +259,7 @@ function TinyCasterStats:Options()
 							self:SetStringColors()
 							self:Stats()
 						end,
-						order = 15
+						order = 13
 					},
 					mastery = {
 						name = STAT_MASTERY,
@@ -310,7 +276,7 @@ function TinyCasterStats:Options()
 							self:Stats()
 						end,
 						disabled = function() return InCombatLockdown() end,
-						order = 16
+						order = 14
 					},
 					masterycolor = {
 						name = "",
@@ -327,7 +293,7 @@ function TinyCasterStats:Options()
 							self:SetStringColors()
 							self:Stats()
 						end,
-						order = 17
+						order = 15
 					},
 					versatility = {
 						name = STAT_VERSATILITY,
@@ -344,7 +310,7 @@ function TinyCasterStats:Options()
 							self:Stats()
 						end,
 						disabled = function() return InCombatLockdown() end,
-						order = 20
+						order = 18
 					},
 					versatilitycolor = {
 						name = "",
@@ -361,12 +327,12 @@ function TinyCasterStats:Options()
 							self:SetStringColors()
 							self:Stats()
 						end,
-						order = 21
+						order = 19
 					},
 					header1 = {
 						name = "",
 						type = 'header',
-						order = 22
+						order = 20
 					},
 					showrecords = {
 						name = L["Show records"],
@@ -383,7 +349,7 @@ function TinyCasterStats:Options()
 							self:Stats()
 						end,
 						disabled = function() return InCombatLockdown() end,
-						order = 23,
+						order = 21,
 					},
 					resetrecords = {
 						name = L["Reset records"],
@@ -399,7 +365,7 @@ function TinyCasterStats:Options()
 							self:Stats()
 						end,
 						disabled = function() return InCombatLockdown() end,
-						order = 24,
+						order = 22,
 					},
 					resetcolor = {
 						name = L["Reset colors"],
@@ -415,7 +381,7 @@ function TinyCasterStats:Options()
 							self:Stats()
 						end,
 						disabled = function() return InCombatLockdown() end,
-						order = 25,
+						order = 23,
 					}
 				}
 			},
