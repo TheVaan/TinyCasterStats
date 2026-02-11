@@ -11,6 +11,7 @@ if not TinyCasterStats then return end
 local AddonName = "TinyCasterStats"
 local L = LibStub("AceLocale-3.0"):GetLocale(AddonName)
 local media = LibStub("LibSharedMedia-3.0")
+local Compat = TinyCasterStats.Compat
 
 TinyCasterStats.fonteffects = {
 	["none"] = L["NONE"],
@@ -19,6 +20,7 @@ TinyCasterStats.fonteffects = {
 }
 
 function TinyCasterStats:Options()
+	local GetAddOnMetadata = GetAddOnMetadata or (C_AddOns and C_AddOns.GetAddOnMetadata)
 	local show = string.lower(SHOW)
 	local hide = string.lower(HIDE)
 	local options = {
@@ -31,6 +33,7 @@ function TinyCasterStats:Options()
 				desc = L["Resets the frame's position"],
 				type = "execute",
 				func = function()
+						self.db.char.FrameHide = false
 						self.tcsframe:ClearAllPoints() self.tcsframe:SetPoint("CENTER", UIParent, "CENTER")
 					end,
 				disabled = function() return InCombatLockdown() end,
@@ -262,6 +265,7 @@ function TinyCasterStats:Options()
 						order = 13
 					},
 					mastery = {
+						hidden = function() return not Compat.HasMastery() end,
 						name = STAT_MASTERY,
 						desc = STAT_MASTERY.." "..show.."/"..hide,
 						width = 'double',
@@ -279,6 +283,7 @@ function TinyCasterStats:Options()
 						order = 14
 					},
 					masterycolor = {
+						hidden = function() return not Compat.HasMastery() end,
 						name = "",
 						desc = "",
 						width = 'half',
@@ -296,6 +301,7 @@ function TinyCasterStats:Options()
 						order = 15
 					},
 					versatility = {
+						hidden = function() return not Compat.HasVersatility() end,
 						name = STAT_VERSATILITY,
 						desc = STAT_VERSATILITY.." "..show.."/"..hide,
 						width = 'double',
@@ -313,6 +319,7 @@ function TinyCasterStats:Options()
 						order = 18
 					},
 					versatilitycolor = {
+						hidden = function() return not Compat.HasVersatility() end,
 						name = "",
 						desc = "",
 						width = 'half',
@@ -356,7 +363,7 @@ function TinyCasterStats:Options()
 						desc = L["Clears your current records"],
 						type = 'execute',
 						func = function()
-							local spec = "Spec"..GetActiveSpecGroup()
+							local spec = "Spec"..Compat.GetActiveSpecGroup()
 							for stat, num in pairs(self.defaults.char[spec]) do
 								if string.find(stat,"Highest") then
 									self.db.char[spec][stat] = num
