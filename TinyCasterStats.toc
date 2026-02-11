@@ -9,6 +9,7 @@
 ## SavedVariablesPerCharacter: TinyCasterStatsDB
 ## OptionalDeps: Ace3, LibDataBroker-1.1
 ## X-Curse-Project-ID: 19198
+## IconTexture: Interface\Icons\Ability_Mage_ArcaneBarrage
 
 #@no-lib-strip@
 Libs\LibStub\LibStub.lua
