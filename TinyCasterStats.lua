@@ -296,15 +296,15 @@ end
 
 function TinyCasterStats:UseTinyXStats()
 
-	if self.Globaldb.NoXStatsPrint then return end
+    if self.Globaldb.NoXStatsPrint then return end
 
-	local text = {}
-	text[1] = "|cFF00ff00You can use TinyXStats, (all in one Stats Addon).|r"
-	text[2] = "http://www.curse.com/addons/wow/tinystats"
-	text[3] = "|cFF00ff00This will always be updated as the first.|r"
-	for i = 1, 3 do
-		DEFAULT_CHAT_FRAME:AddMessage("|cFFCCCC99"..AddonName..": |r"..text[i])
-	end
+    local text = {}
+    text[1] = "|cFF00ff00You can use TinyXStats, (all in one Stats Addon).|r"
+    text[2] = "http://www.curse.com/addons/wow/tinystats"
+    text[3] = "|cFF00ff00This will always be updated as the first.|r"
+    for i = 1, 3 do
+        DEFAULT_CHAT_FRAME:AddMessage("|cFFCCCC99"..AddonName..": |r"..text[i])
+    end
 
 end
 
