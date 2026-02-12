@@ -134,7 +134,7 @@ TinyCasterStats.defaults = {
     }
 }
 
-TinyCasterStats.tcsframe = CreateFrame("Frame",AddonName.."Frame",UIParent)
+TinyCasterStats.tcsframe = CreateFrame("Frame",AddonName.."Frame",UIParent, "BackdropTemplate")
 TinyCasterStats.tcsframe:SetWidth(100)
 TinyCasterStats.tcsframe:SetHeight(15)
 TinyCasterStats.tcsframe:SetFrameStrata("BACKGROUND")
